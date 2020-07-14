@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "Users";
+
+import "google/protobuf/empty.proto";
+
+package user;
+
+// The user service definition.
+service User {
+  rpc UserPost (UserRequest) returns (UserReply);
+  rpc GetUsers (google.protobuf.Empty) returns (stream UserReply);
+  rpc GetUser (IdRequest) returns (UserReply);
+}
+
+
+message UserRequest {
+	int32 id = 1;
+	string first_name = 2;
+	string last_name = 3;
+	string city = 4;
+	string date_of_birth = 5;
+}
+
+message IdRequest {
+  int32 id = 1;
+}
+
+
+message UserReply {
+	int32 id = 1;
+	string first_name = 2;
+	string last_name = 3;
+	string city = 4;
+	string date_of_birth = 5;
+}
